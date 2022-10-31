@@ -11,8 +11,14 @@ v 1.0
 '''
 import csv
 import datetime
-import discord,os,random
+import os
+import random
+
+import discord
 from dotenv import load_dotenv
+
+import Resource.bible as bible
+
 '''from bs4 import BeautifulSoup
 #import urllib2
 import urllib.request as r
@@ -132,14 +138,24 @@ def defineResponsesEvents(inputList, outputList, settingsList, client):# ~ ~ ~ D
                 await message.channel.send("Reloading...")
                 reload(client)
             
-            elif message.content.lower() == "bot responses?":
+            #print ("testtt")
+            contentt = message.content.lower()
+            #print (contentt)
+            #print (bible.searchVerse(contentt))
+            if bible.searchVerse(contentt) == "404":
+                print("No Bible Verse Found")
+            else:
+                await message.channel.send(bible.searchVerse(contentt))
+                
+                
+            if message.content.lower() == "bot responses?":
                     await message.channel.send("You can use any of the following responses:"+ str(inputList))
             elif "holiday" in message.content.lower() and "today" in message.content.lower():
                 dt = datetime.datetime.now()
                 day = str(dt.strftime('%m/%d/%Y'))
                 await message.channel.send(" https://www.checkiday.com/"+day+"")
-            elif message.content == 'raise-exception':
-                raise discord.DiscordException 
+            #elif message.content == 'raise-exception':
+            #    raise discord.DiscordException 
             else: 
                 for i in range (len(inputList)):
                     if settingsList[i] ==0:    
