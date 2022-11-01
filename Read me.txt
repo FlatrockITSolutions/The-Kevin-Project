@@ -1,0 +1,4 @@
+installing discord.py needs windows virtual c++ 14.0 or newer.
+use vs.BuildTools.exe
+use the visual studio installer to install c++
+you need atleast the "MSVC v134 - VS 2022 C++ x64/x86 Buiildt..." and "Windows 10 SKD(10.0.20348.0)"
