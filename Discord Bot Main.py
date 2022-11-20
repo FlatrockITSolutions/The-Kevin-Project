@@ -118,6 +118,7 @@ def defineResponsesEvents(inputList, outputList, settingsList, client):# ~ ~ ~ D
     @client.event
     async def on_message(message):#ping quotes
         messageSendOk = True
+        
         for item in [1005988104529772714,1005987759275638784]:
             if message.channel.id == item:
                 messageSendOk = False
