@@ -18,6 +18,7 @@ import discord
 from dotenv import load_dotenv
 
 import Resource.bible as bible
+import Resource.youtubeLookup as YoutubeLookup
 
 '''from bs4 import BeautifulSoup
 #import urllib2
@@ -154,7 +155,16 @@ def defineResponsesEvents(inputList, outputList, settingsList, client):# ~ ~ ~ D
             elif "holiday" in message.content.lower() and "today" in message.content.lower():
                 dt = datetime.datetime.now()
                 day = str(dt.strftime('%m/%d/%Y'))
-                await message.channel.send(" https://www.checkiday.com/"+day+"")
+                await message.channel.send(" https://www.checkiday.com/"+day+"") 
+            elif "youtube search:" in message.content.lower():
+                temp = message.content.lower().split("youtube search:")
+                dt = datetime.datetime.now()
+                day = str(dt.strftime('%m/%d/%Y'))
+                links = YoutubeLookup.idsToURLs(YoutubeLookup.search(temp[1]))
+                output ="You searched  \""+temp[1]+"\" on youtube:"
+                for i in range(10):
+                    output=output+"\n"+str(i+1)+": "+links [i]
+                await message.channel.send(output)
             #elif message.content == 'raise-exception':
             #    raise discord.DiscordException 
             else: 
